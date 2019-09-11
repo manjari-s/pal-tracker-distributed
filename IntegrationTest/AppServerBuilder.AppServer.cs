@@ -78,11 +78,13 @@ namespace IntegrationTest
                 {
                     try
                     {
+                        Console.WriteLine(_baseUrl);
                         var _ = httpClient.GetAsync(_baseUrl).Result;
                         return;
                     }
                     catch (Exception ex) when(ex.GetBaseException().GetType() == typeof(HttpRequestException))
                     {
+                         Console.WriteLine("Failure : " + _baseUrl);
                         failureReason = ex;
                         Thread.Sleep(delay);
                     }
